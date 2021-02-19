@@ -1,3 +1,5 @@
+import random
+
 from models.game import Game
 from models.player import Player
 
@@ -18,5 +20,15 @@ class GreedyNumberPlayer(Player):
             cnt = next_game.get_number(color)
             if cnt > max_num:
                 max_num = cnt
-                x, y = v
-        return x, y
+                # x, y = v
+        best_moves = []
+        for v in moves:
+            next_game = Game(board.copy())
+            state = next_game.place(v[0], v[1], color)
+            if state is False:
+                return None, None
+            cnt = next_game.get_number(color)
+            if cnt == max_num:
+                best_moves.append(v)
+        # return x, y
+        return random.choice(best_moves)

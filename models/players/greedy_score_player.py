@@ -1,3 +1,5 @@
+import random
+
 from config.othello_config import OthelloConfig as Config
 from models.game import Game
 from models.player import Player
@@ -19,5 +21,15 @@ class GreedyScorePlayer(Player):
             score = next_game.get_score(color)
             if score > max_score:
                 max_score = score
-                x, y = v
-        return x, y
+                # x, y = v
+        best_moves = []
+        for v in moves:
+            next_game = Game(board.copy())
+            state = next_game.place(v[0], v[1], color)
+            if state is False:
+                return None, None
+            score = next_game.get_score(color)
+            if score == max_score:
+                best_moves.append(v)
+        # return x, y
+        return random.choice(best_moves)

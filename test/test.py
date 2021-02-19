@@ -9,7 +9,7 @@ if __name__ == "__main__":
     for i in range(10):
         game = Game()
         player1 = MinimaxPlayer()
-        player2 = RandomPlayer()
+        player2 = GreedyScorePlayer()
         color = Config.BLACK
         # cnt = 0
         while game.is_finish() is False:
