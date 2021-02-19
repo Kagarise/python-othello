@@ -18,7 +18,8 @@ class OthelloConfig(object):
         [-3, -7, -4, 1, 1, -4, -7, -3],
         [20, -3, 11, 8, 8, 11, -3, 20]
     ])
-    MINIMAX_MAX_DEPTH = 4
+    ALPHA_BETA_MAX_DEPTH = 4
+    ALPHA_BETA_MAX_TIME = 3
 
 
 class PlayerType(object):
