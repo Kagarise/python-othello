@@ -3,7 +3,7 @@ from models.game import Game
 from models.player import Player
 
 
-class MinimaxPlayer(Player):
+class AlphaBetaPlayer(Player):
     def get_action(self, board, color):
         score, move = self.alpha_beta(board, Config.MINIMAX_MAX_DEPTH, -Config.INF, Config.INF, color, color,
                                       Config.MINIMAX_MAX_DEPTH)
@@ -25,8 +25,9 @@ class MinimaxPlayer(Player):
         best_move = (None, None)
         best_score = -Config.INF
         for i in range(len(states)):
-            score, move = MinimaxPlayer.alpha_beta(states[i], depth - 1, -beta, -max(alpha, best_score), -current_color,
-                                                   color, max_depth)
+            score, move = AlphaBetaPlayer.alpha_beta(states[i], depth - 1, -beta, -max(alpha, best_score),
+                                                     -current_color,
+                                                     color, max_depth)
             # print({"score": score, "move": move})
             score = -score
             if score > best_score:
@@ -54,7 +55,7 @@ class MinimaxPlayer(Player):
             best_score = -Config.INF
             best_move = (None, None)
             for i in range(len(states)):
-                score, move = MinimaxPlayer.test_alpha_beta(states[i], depth - 1, alpha, beta, -current_color, color)
+                score, move = AlphaBetaPlayer.test_alpha_beta(states[i], depth - 1, alpha, beta, -current_color, color)
                 if best_score < score:
                     best_score = score
                     best_move = move
@@ -66,7 +67,7 @@ class MinimaxPlayer(Player):
             best_score = Config.INF
             best_move = (None, None)
             for i in range(len(states)):
-                score, move = MinimaxPlayer.test_alpha_beta(states[i], depth - 1, alpha, beta, -current_color, color)
+                score, move = AlphaBetaPlayer.test_alpha_beta(states[i], depth - 1, alpha, beta, -current_color, color)
                 if best_score > score:
                     best_score = score
                     best_move = move

@@ -25,6 +25,6 @@ class PlayerType(object):
     RANDOM = "random"
     GREEDY_NUMBER = "number"
     GREEDY_SCORE = "score"
-    MINIMAX = "minimax"
+    ALPHA_BETA = "alpha_beta"
     UCT = "uct"
     DEEP_LEARNING = "deep_learning"

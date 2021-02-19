@@ -8,7 +8,7 @@ if __name__ == "__main__":
     white = 0
     for i in range(10):
         game = Game()
-        player1 = MinimaxPlayer()
+        player1 = AlphaBetaPlayer()
         player2 = GreedyScorePlayer()
         color = Config.BLACK
         # cnt = 0

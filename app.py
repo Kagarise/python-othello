@@ -18,8 +18,8 @@ def get_player(player):
         return RandomPlayer()
     elif player == PlayerType.GREEDY_SCORE:
         return GreedyScorePlayer()
-    elif player == PlayerType.MINIMAX:
-        return MinimaxPlayer()
+    elif player == PlayerType.ALPHA_BETA:
+        return AlphaBetaPlayer()
     elif player == PlayerType.UCT:
         return UCTPlayer()
     elif player == PlayerType.DEEP_LEARNING:
