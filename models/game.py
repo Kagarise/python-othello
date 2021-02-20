@@ -18,7 +18,7 @@ class Game(object):
             print(c, *map('-WB'.__getitem__, r))
 
     def place(self, x=-1, y=-1, color=Config.EMPTY, check_only=False):
-        if x < 0 or y < 0 or x >= 8 or y >= 8 or self.board[x][y] != Config.EMPTY:
+        if x < 0 or y < 0 or x >= 8 or y >= 8 or self.board[x, y] != Config.EMPTY:
             return False
         if not check_only:
             self.board[x, y] = color

@@ -6,19 +6,20 @@ if __name__ == "__main__":
     black = 0
     draw = 0
     white = 0
-    for i in range(100):
+    for i in range(10):
         game = Game()
-        player1 = AlphaBetaPlayer()
-        player2 = GreedyScorePlayer()
+        player1 = UCTPlayer()
+        player2 = RandomPlayer()
         color = Config.BLACK
+        step = 0
         while game.is_finish() is False:
+            step += 1
+            print({"step": step})
             x, y = -1, -1
             if color == Config.BLACK:
                 x, y = player1.get_action(game.board.copy(), color)
             else:
                 x, y = player2.get_action(game.board.copy(), color)
-            if color == Config.BLACK and x == -1 and y == -1 and game.get_valid_moves(color) != []:
-                print("ERROR")
             game.place(x, y, color)
             color = -color
         b, w = game.get_number()

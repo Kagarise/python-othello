@@ -38,7 +38,7 @@ class AlphaBetaPlayer(Player):
         if len(moves) == 0:
             return game.get_score(current_color), (-1, -1)
         if depth == 0:
-            return game.get_score(current_color), (None, None)
+            return game.get_score(current_color), (-1, -1)
         # if depth == max_depth:
         #     for v in moves:
         #         if Config.WEIGHTS[v[0], v[1]] == Config.WEIGHTS[0, 0]:

@@ -31,6 +31,7 @@ def get_action():
     board = np.array(request.json.get('board'), dtype=np.int8)
     color = request.json.get('color')
     player_type = request.json.get('player')
+    print(player_type)
     # 参数缺失
     if board is None or color is None or player_type is None:
         return Result.error(400, 'Args error!')
