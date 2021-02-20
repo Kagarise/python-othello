@@ -24,9 +24,6 @@ class UCT(object):
         root = Node(state)
         start_time = time.time()
         while time.time() - start_time < Config.UCT_MAX_TIME:
-        # time = 0
-        # while time < 5:
-        #     time += 1
             child = self.tree_policy(root)
             value = self.default_policy(child)
             self.N += 1

@@ -6,10 +6,10 @@ if __name__ == "__main__":
     black = 0
     draw = 0
     white = 0
-    for i in range(10):
+    for i in range(11):
         game = Game()
         player1 = UCTPlayer()
-        player2 = AlphaBetaPlayer()
+        player2 = RandomPlayer()
         color = Config.BLACK
         step = 0
         while game.is_finish() is False:
