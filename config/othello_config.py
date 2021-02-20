@@ -30,7 +30,7 @@ class OthelloConfig(object):
     ])
     ALPHA_BETA_MAX_DEPTH = 4
     ALPHA_BETA_MAX_TIME = 3
-    UCT_MAX_TIME = 2
+    UCT_MAX_TIME = 3
     UCB_EXPLORE = 1.414
     UCB_USE = 0
 
