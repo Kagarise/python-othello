@@ -14,7 +14,7 @@ class UCTPlayer(Player):
             return -1, -1
         uct = UCT()
         x, y = uct.uct_search(state)
-        print(x, y)
+        # print(x, y)
         return x, y
 
 

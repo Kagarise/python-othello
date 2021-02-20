@@ -9,12 +9,12 @@ if __name__ == "__main__":
     for i in range(10):
         game = Game()
         player1 = UCTPlayer()
-        player2 = RandomPlayer()
+        player2 = AlphaBetaPlayer()
         color = Config.BLACK
         step = 0
         while game.is_finish() is False:
             step += 1
-            print({"step": step})
+            # print({"step": step})
             x, y = -1, -1
             if color == Config.BLACK:
                 x, y = player1.get_action(game.board.copy(), color)
@@ -24,12 +24,12 @@ if __name__ == "__main__":
             color = -color
         b, w = game.get_number()
         if b - w > 0:
-            print({"round": i + 1, "winner": "black"})
+            print({"round": i + 1, "winner": "uct"})
             black += 1
         elif b - w == 0:
             print({"round": i + 1, "winner": "draw"})
             draw += 1
         else:
-            print({"round": i + 1, "winner": "white"})
+            print({"round": i + 1, "winner": "alpha"})
             white += 1
-    print({"black": black, "draw": draw, "white": white})
+    print({"uct": black, "draw": draw, "alpha": white})

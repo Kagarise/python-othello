@@ -1,7 +1,7 @@
 import json
 import numpy
 
-from models.players.alpha_beta import AlphaBetaPlayer
+from models.players import UCTPlayer
 
 DIR = ((-1, -1), (-1, 0), (-1, 1), (0, -1), (0, 1), (1, -1), (1, 0), (1, 1))  # 方向向量
 
@@ -50,5 +50,5 @@ def initBoard():
 
 def botZone():
     board, color = initBoard()
-    x, y = AlphaBetaPlayer().get_action(board, color)
+    x, y = UCTPlayer().get_action(board, color)
     print(json.dumps({"response": {"x": x, "y": y}}))
