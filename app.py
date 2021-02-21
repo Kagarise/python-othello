@@ -12,16 +12,16 @@ api = Blueprint('api', __name__, url_prefix='/api')
 
 
 def get_player(player):
-    if player == PlayerType.GREEDY_NUMBER:
-        return GreedyNumberPlayer()
-    elif player == PlayerType.RANDOM:
+    if player == PlayerType.RANDOM:
         return RandomPlayer()
+    elif player == PlayerType.GREEDY_NUMBER:
+        return GreedyNumberPlayer()
     elif player == PlayerType.GREEDY_SCORE:
         return GreedyScorePlayer()
-    elif player == PlayerType.ALPHA_BETA:
-        return AlphaBetaPlayer()
     elif player == PlayerType.UCT:
         return UCTPlayer()
+    elif player == PlayerType.ALPHA_BETA:
+        return AlphaBetaPlayer()
     elif player == PlayerType.DEEP_LEARNING:
         return DeepLearningPlayer()
 
