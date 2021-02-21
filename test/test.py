@@ -6,7 +6,7 @@ if __name__ == "__main__":
     black = 0
     draw = 0
     white = 0
-    for i in range(11):
+    for i in range(20):
         game = Game()
         player1 = UCTPlayer()
         player2 = RandomPlayer()
@@ -24,12 +24,12 @@ if __name__ == "__main__":
             color = -color
         b, w = game.get_number()
         if b - w > 0:
-            print({"round": i + 1, "winner": "uct"})
+            print({"round": i + 1, "winner": "black", "black/white": (str(b) + "/" + str(w))})
             black += 1
         elif b - w == 0:
-            print({"round": i + 1, "winner": "draw"})
+            print({"round": i + 1, "winner": "draw", "black/white": (str(b) + "/" + str(w))})
             draw += 1
         else:
-            print({"round": i + 1, "winner": "alpha"})
+            print({"round": i + 1, "winner": "white", "black/white": (str(b) + "/" + str(w))})
             white += 1
-    print({"uct": black, "draw": draw, "alpha": white})
+    print({"black": black, "draw": draw, "white": white})

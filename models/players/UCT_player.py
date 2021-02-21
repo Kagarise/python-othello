@@ -19,38 +19,68 @@ class UCTPlayer(Player):
 
 
 class UCT(object):
-    def uct_search(self, state):
+    def __init__(self):
         self.N = 0
+        self.color = Config.BLACK
+        self.depth = 0
+
+    def output(self, root, dep):
+        print(root.total, root.value)
+        self.depth = max(self.depth, dep)
+        for key in root.children:
+            # print(root.children[key].value, root.children[key].total)
+            self.output(root.children[key], dep + 1)
+
+    def uct_search(self, state):
+        self.color = state.color
         root = Node(state)
+        # self.expand(root)
         start_time = time.time()
         while time.time() - start_time < Config.UCT_MAX_TIME:
             child = self.tree_policy(root)
+            # self.expand(child)
             value = self.default_policy(child)
             self.N += 1
             self.backup(child, value)
+        # print(root.value, root.total)
+        # self.output(root, 1)
+        # print(self.depth)
+        # print(self.N)
         return self.best_child(root, Config.UCB_USE)[0]
 
     def tree_policy(self, node):
-        if not node.is_expand:
-            self.expand(node)
-        return self.best_child(node, Config.UCB_EXPLORE)[1]
+        while not node.state.is_finish():
+            if not node.is_expand:
+                self.expand(node)
+                return self.best_child(node, Config.UCB_EXPLORE)[1]
+            else:
+                node = self.best_child(node, Config.UCB_EXPLORE)[1]
+        return node
+        # while node.is_expand:
+        #     node = self.best_child(node, Config.UCB_EXPLORE)[1]
+        # return node
 
     def expand(self, node):
         node.is_expand = True
         moves = node.state.get_valid_moves()
+        if len(moves) == 0:
+            moves.append((-1, -1))
         for move in moves:
             child_state = State(node.state.board.copy(), node.state.color)
             child_state.play(move[0], move[1])
             node.children[move] = Node(child_state, node)
+        # return node
 
     def best_child(self, node, c):
+        # for key in node.children:
+        #     print({"ucb": node.children[key].cal_ucb(self.N, c)})
         return max(node.children.items(), key=lambda item: item[1].cal_ucb(self.N, c))
 
     def default_policy(self, node):
         state = State(node.state.board.copy(), node.state.color)
         while not state.is_finish():
             state.random_play()
-        return state.get_value(-node.state.color)
+        return state.get_value(self.color)
 
     def backup(self, parent, value):
         while parent is not None:
