@@ -9,7 +9,7 @@ if __name__ == "__main__":
     for i in range(20):
         game = Game()
         player1 = UCTPlayer()
-        player2 = RandomPlayer()
+        player2 = AlphaBetaPlayer()
         color = Config.BLACK
         step = 0
         while game.is_finish() is False:
