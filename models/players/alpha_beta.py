@@ -43,19 +43,23 @@ class AlphaBetaPlayer(Player):
         #     for v in moves:
         #         if Config.WEIGHTS[v[0], v[1]] == Config.WEIGHTS[0, 0]:
         #             return Config.INF, v
-        best_move = (None, None)
+        best_move = (-1, -1)
         best_score = -Config.INF
         for i in range(len(states)):
-            score, move = self.alpha_beta(states[i], depth - 1, -beta, -max(alpha, best_score),
-                                          -current_color,
-                                          color)
-            # print({"score": score, "move": move})
-            score = -score
+            score = -self.alpha_beta(states[i], depth - 1, -beta, -max(alpha, best_score),
+                                     -current_color, color)[0]
             if score > best_score:
                 best_score = score
                 best_move = moves[i]
                 if best_score > beta:
                     return best_score, best_move
+            # score = -self.alpha_beta(states[i], depth - 1, -beta, -alpha,
+            #                          -current_color, color)[0]
+            # if score > alpha:
+            #     alpha = score
+            #     best_move = moves[i]
+            #     if beta <= alpha:
+            #         return score, best_move
         return best_score, best_move
     #
     # def test_get_action(self, board, color):

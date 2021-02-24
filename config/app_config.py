@@ -1,5 +1,7 @@
+from config.secret_config import SERVER_PORT, SERVER_HOST
+
 SERVER_INFO = {
-    'port': 1314,
-    'host': '0.0.0.0',
-    'debug': True
+    'port': SERVER_PORT,
+    'host': SERVER_HOST,
+    'debug': False,
 }

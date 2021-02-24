@@ -8,13 +8,13 @@ if __name__ == "__main__":
     white = 0
     for i in range(20):
         game = Game()
-        player1 = UCTPlayer()
-        player2 = AlphaBetaPlayer()
+        player1 = AlphaBetaPlayer()
+        player2 = RandomPlayer()
         color = Config.BLACK
         step = 0
         while game.is_finish() is False:
             step += 1
-            # print({"step": step})
+            print({"step": step})
             x, y = -1, -1
             if color == Config.BLACK:
                 x, y = player1.get_action(game.board.copy(), color)
