@@ -98,4 +98,4 @@ class Game(object):
         return sum(sum(self.board * Config.WEIGHTS)) * color
 
     def is_finish(self):
-        return self.get_valid_moves(Config.BLACK) == [] and self.get_valid_moves(Config.WHITE) == []
+        return not self.get_valid_moves(Config.BLACK) and not self.get_valid_moves(Config.WHITE)
