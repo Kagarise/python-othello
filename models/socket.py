@@ -17,7 +17,7 @@ socketIO = SocketIO(cors_allowed_origins='*', async_mode='eventlet')
 def connect():
     ip = get_ip()
     emit('response_connect', {'code': 200, 'msg': ip + '连接成功', 'user_id': ip})
-    logging.debug(ip + "连接成功")
+    logging.debug(ip + " 连接成功")
 
 
 # 关闭连接
@@ -44,7 +44,7 @@ def disconnect():
         if is_empty:
             r_list_clear(room_name)
             logging.info(user_id + ' 关闭了 ' + room_name)
-    logging.debug(user_id + "断开连接")
+    logging.debug(user_id + " 断开连接")
 
 
 # 创建房间
