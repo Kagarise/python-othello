@@ -120,6 +120,14 @@ def leave(data):
             r_list_clear(room_name)
             logging.info(user_id + ' 关闭了 ' + room_name)
 
+
+# 开始游戏
+# #params: room_id
+@socketIO.event
+def start_game(data):
+    room_name = RoomConfig.OTHELLO_ROOM + data['room_id']
+    emit('response_start_game', room=room_name)
+
 # 进入房间
 # @params: room_id, user_id
 # @return: user_id, user_list
