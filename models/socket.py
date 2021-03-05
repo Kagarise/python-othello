@@ -87,8 +87,8 @@ def join(data):
                 join_room(room_name)
                 emit('response_join', {'code': 200, 'msg': user_id + '加入了' + room_name, 'user_list': user_list},
                      room=room_name)
+                logging.debug(user_id + ' 加入了 ' + room_name)
                 break
-        logging.debug(user_id + ' 加入了 ' + room_name)
 
 
 # 离开房间
@@ -106,11 +106,11 @@ def leave(data):
             if user_list[i] == user_id:
                 user_list[i] = ''
                 r_list_set(room_name, i, '')
+                leave_room(room_name)
                 emit('response_leave', {'code': 200, 'msg': user_id + '离开了' + room_name, 'user_list': user_list},
                      room=room_name)
-                leave_room(room_name)
+                logging.debug(user_id + ' 离开了 ' + room_name)
                 break
-        logging.debug(user_id + ' 离开了 ' + room_name)
         is_empty = True
         for val in user_list:
             if val != '':
@@ -122,11 +122,20 @@ def leave(data):
 
 
 # 开始游戏
-# #params: room_id
+# @params: room_id
 @socketIO.event
 def start_game(data):
     room_name = RoomConfig.OTHELLO_ROOM + data['room_id']
     emit('response_start_game', room=room_name)
+
+
+# 行动
+# @params: data
+# @return: data
+@socketIO.event
+def action(data):
+    room_name = RoomConfig.OTHELLO_ROOM + data['room_id']
+    emit('response_action', data, room=room_name)
 
 # 进入房间
 # @params: room_id, user_id
