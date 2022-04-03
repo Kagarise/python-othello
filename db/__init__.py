@@ -22,4 +22,5 @@ def init_app(app):
 
     from db.statistics import Statistics
     from db.record import Record
+
     Base.metadata.create_all(bind=engine)
