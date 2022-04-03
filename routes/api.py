@@ -4,7 +4,7 @@ import numpy as np
 from flask import request, Blueprint
 
 from config.room_config import RoomConfig
-from models.redis import r_list_exists, r_list_create
+from models.pedis import r_list_exists, r_list_create
 from utils.id import create_room_id
 from utils.ip import get_ip
 

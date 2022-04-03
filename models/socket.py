@@ -3,12 +3,12 @@ import logging
 from flask_socketio import SocketIO, emit, join_room, leave_room, rooms
 
 from config.room_config import RoomConfig
-from models.redis import r_list_exists, r_list_create, r_list_set, r_list_get_all, r_list_clear
+from models.pedis import r_list_exists, r_list_create, r_list_set, r_list_get_all, r_list_clear
 from utils.id import create_room_id
 from utils.ip import get_ip
 
 # 开启跨域
-socketIO = SocketIO(cors_allowed_origins='*', async_mode='eventlet')
+socketIO = SocketIO(cors_allowed_origins='*')
 
 
 # 建立连接

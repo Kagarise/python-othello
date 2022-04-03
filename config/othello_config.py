@@ -1,3 +1,5 @@
+from enum import Enum
+
 import numpy as np
 
 
@@ -35,10 +37,19 @@ class OthelloConfig(object):
     UCB_USE = 0
 
 
-class PlayerType(object):
+class PlayerType(Enum):
     RANDOM = "random"
     GREEDY_NUMBER = "number"
     GREEDY_SCORE = "score"
     ALPHA_BETA = "alpha_beta"
     UCT = "uct"
     DEEP_LEARNING = "deep_learning"
+    LOCAL_PLAYER = "local_player"
+    ONLINE_PLAYER = "online_player"
+    UNKNOWN = "unknown"
+
+
+class Winner(Enum):
+    BLACK = "black"
+    WHITE = "white"
+    DRAW = "draw"
